@@ -1,0 +1,27 @@
+<table id="table" class="table table-sm table-striped" style="display: none;">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Date</th>
+      <th scope="col">Income</th>
+      <th scope="col">Expenses</th>
+      <th scope="col">Reimbursement</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for shift in shifts %}
+    <tr>
+      <th scope="row">{{ shift.title }}</th>
+      <td>{{ shift.date.strftime("%x") }}</td>
+      <td>£{{ shift.income }}</td>
+      <td>£{{ shift.expenses }}</td>
+      <td>£{{ shift.reimbursement }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="mt-3">
+  <button id="showButton" onclick="showTable()" type="button" class="btn btn-secondary btn-sm">Show Table</button>
+</div>
