@@ -1,9 +1,11 @@
+import os
 from flask import Flask, render_template, flash, request
 from models import *
 from peewee import *
 
 database = SqliteDatabase("db.sqlite")
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY')
 
 
 # This hook ensures that a connection is opened to handle any queries
@@ -24,6 +26,7 @@ def _db_close(exc):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
+        flash("Shift created successfully.")
         Shift.create(**{k: v for k, v in request.form.items() if v})
 
     shifts = Shift.select().order_by(Shift.date.desc())
