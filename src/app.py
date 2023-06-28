@@ -1,7 +1,10 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, flash, request
 from models import *
 from peewee import *
+
+load_dotenv()
 
 database = SqliteDatabase("db.sqlite")
 app = Flask(__name__)
